@@ -15,13 +15,14 @@ public class Console {
 	}
 	
 	public void tick(){
-		
+		messages.clear();
+		log("///**** Styx Sailor Engine V.01 ****///");
 		if(global.input.console.down){
 			enable = !enable;
 			global.input.releseKey(global.input.console);
 			
 		}
-		log("///**** Styx Sailor Engine V.01 ****///");
+		
 	}
 	
 	public void render(Graphics2D g){
@@ -37,7 +38,7 @@ public class Console {
 				drawY += stepY;
 			}
 		}
-		messages.clear();
+		
 	}
 	
 	public void log (String message){
