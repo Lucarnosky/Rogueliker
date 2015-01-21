@@ -21,9 +21,9 @@ public class Rogue extends Canvas implements Runnable {
 	private static final long serialVersionUID = 1L;
 	Global global = new Global();
 	public static final String NAME = "Rogue";
-	public static final int HEIGHT = 120;
-	public static final int WIDTH = 160;
-	public static final int SCALE = 3;
+	public static final int HEIGHT = 320;
+	public static final int WIDTH = 320;
+	public static final int SCALE = 2;
 	private boolean running = false;
 	
 	static JFrame frame;
@@ -41,6 +41,9 @@ public class Rogue extends Canvas implements Runnable {
 	
 	private void init() {
 		global.input = new InputHandler();
+		global.W_HEIGHT = HEIGHT;
+		global.W_WIDTH = WIDTH;
+		global.W_SCALE  = SCALE;
 		addKeyListener(global.input);
 		gameHandler = new GameHandler(global);
 		
@@ -107,9 +110,9 @@ public class Rogue extends Canvas implements Runnable {
 		g.fillRect(0, 0, getWidth(), getHeight());
 		g.setFont(defaultFont);
 		//g.translate(global.camX, global.camY);
-		
-		gameHandler.render(g);
 
+		g.setColor(Color.white);
+		gameHandler.render(g);
 		//console.render(g);
 		
 		g.dispose();
