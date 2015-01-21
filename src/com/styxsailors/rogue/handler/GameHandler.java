@@ -9,7 +9,7 @@ import com.styxsailors.rogue.utils.Global.GameState;
 public class GameHandler {
 	
 	Global global;
-	Console console;
+	LevelHandler levelHandler;
 	
 	public GameHandler(Global global){
 		System.out.println("Creating game handler...");
@@ -19,17 +19,43 @@ public class GameHandler {
 	
 	private void init(){
 		System.out.println("Initializing game handler...");
-		global.gamestate = GameState.MAIN_MENU;
-		console = new Console(global);
+		levelHandler = new LevelHandler(global);
+		global.gamestate = GameState.PLAY;
+		global.console = new Console(global);
 	}
 	
 	public void tick(){
 		global.input.tick();
-		console.tick();
+		global.console.tick();
+		switch(global.gamestate){
+		case MAIN_MENU:
+			break;
+		case PAUSE:
+			break;
+		case PLAY:
+			levelHandler.tick();
+			break;
+		default:
+			break;
+		
+		}
 	}
 	
 	public void render(Graphics2D g){
-		console.render(g);
+		
+		switch(global.gamestate){
+		case MAIN_MENU:
+			break;
+		case PAUSE:
+			break;
+		case PLAY:
+			levelHandler.render(g);
+			break;
+		default:
+			break;
+		
+		}
+		global.console.render(g);
 	}
 
 }

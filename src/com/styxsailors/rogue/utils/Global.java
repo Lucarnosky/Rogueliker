@@ -11,5 +11,7 @@ public class Global {
 	
 	public GameState gamestate;
 	public InputHandler input ;
+	
 	public int W_WIDTH, W_HEIGHT, W_SCALE;
+	public Console console;
 }

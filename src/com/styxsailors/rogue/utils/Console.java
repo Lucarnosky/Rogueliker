@@ -31,7 +31,7 @@ public class Console {
 			g.setColor(new Color(1, 1, 1, 0.7f)); //Red 
 			g.fillRect(0,0, (global.W_WIDTH * global.W_SCALE) / 3 * 2,global.W_HEIGHT * global.W_SCALE);	
 			g.setColor(Color.white);
-			int stepY = 10;
+			int stepY = 12;
 			int drawY = 10;
 			for(int i = 0; i < messages.size(); i ++){
 				g.drawString(messages.get(i), 1, drawY);
