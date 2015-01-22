@@ -3,7 +3,6 @@ package com.styxsailors.rogue.entity;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
-import com.styxsailors.rogue.utils.Bounds;
 import com.styxsailors.rogue.utils.Global;
 
 public class RogueEntity {
@@ -15,7 +14,6 @@ public class RogueEntity {
 	protected int hsp, vsp;
 	protected int maxHsp, maxVsp;
 	protected String name;
-	protected Bounds bound;
 	protected boolean onScreen = false;
 	
 	public RogueEntity(int x, int y, Global global){
@@ -31,7 +29,6 @@ public class RogueEntity {
 		width = 32;
 		height = 32;
 		calculateCenterCoords();
-		bound.calculateBounds();
 	}
 	
 	public void tick(){
