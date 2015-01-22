@@ -41,7 +41,6 @@ public class LevelHandler {
 	public void render(Graphics2D g){
 		renderLayer(entities, g);
 		renderLayer(levelMap, g);
-		
 	}
 	
 	private void loadLevel(){
@@ -74,7 +73,5 @@ public class LevelHandler {
 	private int countEntitiesOnScreen(){
 		return entityCounter;
 	}
-	
-	
 	
 }
