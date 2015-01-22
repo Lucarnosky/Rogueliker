@@ -7,7 +7,7 @@ import com.styxsailors.rogue.utils.Global;
 
 public class Player extends RogueEntity{
 
-	
+	public boolean stopLeft;
 	
 	public Player(int x, int y, Global global) {
 		super(x, y, global);
@@ -16,20 +16,22 @@ public class Player extends RogueEntity{
 	
 	protected void init(){
 		name = "Player";
+		width = 32;
+		height = 32;
 		maxHsp = 5;
 		maxVsp = 5;
+		calculateCenterCoords();
 	}
 	
 	public void tick(){
 		global.console.log("Player Coords:("+x+","+y+")");
 		global.console.log("Player Speeds:("+hsp+","+vsp+")");
 		updateInput();
-		
 	}
 	
 	private void updateInput(){
 		//Movimenti Destra/Sinistra
-				if(global.input.left.down){
+				if(global.input.left.down && !stopLeft){
 					if(hsp > -maxHsp)
 						hsp -= 1;
 					else
@@ -77,7 +79,10 @@ public class Player extends RogueEntity{
 	
 	public void render(Graphics2D g){
 		g.setColor(Color.red);
-		g.fillRect(x, y, 32, 32);
+		g.fillRect(x, y, width, height);
+		g.setColor(Color.white);
+		g.drawRect(getBounds().x, getBounds().y, getBounds().width, getBounds().height);
 	}
-
+	
+	
 }

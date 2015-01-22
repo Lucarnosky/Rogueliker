@@ -2,6 +2,7 @@ package com.styxsailors.rogue.handler;
 
 import java.awt.Graphics2D;
 
+import com.styxsailors.rogue.screen.Camera;
 import com.styxsailors.rogue.utils.Console;
 import com.styxsailors.rogue.utils.Global;
 import com.styxsailors.rogue.utils.Global.GameState;
@@ -19,9 +20,11 @@ public class GameHandler {
 	
 	private void init(){
 		System.out.println("Initializing game handler...");
-		levelHandler = new LevelHandler(global);
+		
 		global.gamestate = GameState.PLAY;
 		global.console = new Console(global);
+		global.camera = new Camera(global);
+		levelHandler = new LevelHandler(global);
 	}
 	
 	public void tick(){
@@ -49,6 +52,7 @@ public class GameHandler {
 		case PAUSE:
 			break;
 		case PLAY:
+			g.translate(global.camX, global.camY);
 			levelHandler.render(g);
 			break;
 		default:
