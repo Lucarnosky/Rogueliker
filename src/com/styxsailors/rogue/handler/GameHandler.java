@@ -1,5 +1,6 @@
 package com.styxsailors.rogue.handler;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 
 import com.styxsailors.rogue.screen.Camera;
@@ -20,7 +21,6 @@ public class GameHandler {
 	
 	private void init(){
 		System.out.println("Initializing game handler...");
-		
 		global.gamestate = GameState.PLAY;
 		global.console = new Console(global);
 		global.camera = new Camera(global);
@@ -37,6 +37,9 @@ public class GameHandler {
 			break;
 		case PLAY:
 			levelHandler.tick();
+			break;
+		case EDITOR:
+			
 			break;
 		default:
 			break;
@@ -55,10 +58,15 @@ public class GameHandler {
 			g.translate(global.camX, global.camY);
 			levelHandler.render(g);
 			break;
+		case EDITOR:
+			
+			break;
 		default:
 			break;
 		
 		}
+		g.setColor(Color.white);
+		g.drawString("FPS:"+global.fps,-global.camX + global.W_WIDTH * global.W_SCALE - 20, -global.camY + global.W_HEIGHT);
 		global.console.render(g);
 	}
 

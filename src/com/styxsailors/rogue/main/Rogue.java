@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 
 import com.styxsailors.rogue.handler.GameHandler;
 import com.styxsailors.rogue.handler.InputHandler;
+import com.styxsailors.rogue.handler.MouseHandler;
 import com.styxsailors.rogue.utils.Global;
 
 import java.awt.Graphics2D;
@@ -41,12 +42,15 @@ public class Rogue extends Canvas implements Runnable {
 	
 	private void init() {
 		global.input = new InputHandler();
+		global.mouse = new MouseHandler(global);
 		global.W_HEIGHT = HEIGHT;
 		global.W_WIDTH = WIDTH;
 		global.W_SCALE  = SCALE;
 		addKeyListener(global.input);
+		addMouseListener(global.mouse);
+		addMouseMotionListener(global.mouse);
+		addMouseWheelListener(global.mouse);
 		gameHandler = new GameHandler(global);
-		
 	}
 	
 	public void run() {
@@ -84,7 +88,8 @@ public class Rogue extends Canvas implements Runnable {
 
 			if (System.currentTimeMillis() - lastTimer1 > 1000) {
 				lastTimer1 += 1000;
-				System.out.println(ticks + " ticks, " + frames + " fps");
+				//System.out.println(ticks + " ticks, " + frames + " fps");
+				global.fps = frames;
 				frames = 0;
 				ticks = 0;
 			}

@@ -16,6 +16,9 @@ public class RogueEntity {
 	private String name;
 	protected boolean onScreen = false;
 	private int tolerance = 2;
+	public int HP;
+	public boolean remove = false;
+	
 	public RogueEntity(int x, int y, Global global){
 		this.x = x;
 		this.y = y;
@@ -102,5 +105,11 @@ public class RogueEntity {
 	
 	protected void updateCollision(){
 		
+	}
+	
+	protected boolean mouseOver(){
+		if( global.mouse.x > x && global.mouse.x < x + width && global.mouse.y > y && global.mouse.y < y + height)
+			return true;
+		return false;
 	}
 }

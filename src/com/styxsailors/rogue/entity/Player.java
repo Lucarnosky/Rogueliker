@@ -28,7 +28,6 @@ public class Player extends RogueEntity{
 	public void tick(){
 		global.console.log("Player Coords:("+x+","+y+")");
 		global.console.log("Player Speeds:("+hsp+","+vsp+")");
-		
 		updateCollision();
 		updateInput();
 	}
@@ -119,11 +118,7 @@ public class Player extends RogueEntity{
 		g.fillRect(x, y, width, height);
 		g.setColor(Color.white);
 		g.drawRect(getBounds().x, getBounds().y, getBounds().width, getBounds().height);
-		g.setColor(Color.yellow);
-		g.drawRect(getTopBounds().x, getTopBounds().y, getTopBounds().width, getTopBounds().height);
-		g.drawRect(getBottomBounds().x, getBottomBounds().y, getBottomBounds().width, getBottomBounds().height);
-		g.drawRect(getLeftBounds().x, getLeftBounds().y, getLeftBounds().width, getLeftBounds().height);
-		g.drawRect(getRightBounds().x, getRightBounds().y, getRightBounds().width, getRightBounds().height);
+		
 	}
 	
 	public void setColliding(boolean colliding){

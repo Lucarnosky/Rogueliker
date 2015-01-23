@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
+import com.styxsailors.rogue.editor.Tile;
 import com.styxsailors.rogue.entity.Player;
 import com.styxsailors.rogue.entity.RogueEntity;
 import com.styxsailors.rogue.entity.environment.UnpassableBlock;
@@ -47,6 +48,7 @@ public class LevelHandler {
 		global.camera.setEntityToFollow(p);
 		entities.add(p);
 		levelMap.add(new UnpassableBlock(150, 150, global));
+		levelMap.add(new Tile(190, 190, global));
 		
 	}
 	
@@ -62,6 +64,8 @@ public class LevelHandler {
 					global.console.log("Player Collision With " + list.get(i).getName());
 				}
 			}
+			if(list.get(i).remove)
+				list.remove(list.get(i));
 		}
 	}
 	
