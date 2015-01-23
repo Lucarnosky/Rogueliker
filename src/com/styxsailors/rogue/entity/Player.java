@@ -7,7 +7,9 @@ import com.styxsailors.rogue.utils.Global;
 
 public class Player extends RogueEntity{
 
-	public boolean stopLeft;
+	public boolean stopLeft,stopUp,stopRight,stopDown;
+	protected boolean colliding = false;
+	protected RogueEntity collidingEntity;
 	
 	public Player(int x, int y, Global global) {
 		super(x, y, global);
@@ -15,7 +17,7 @@ public class Player extends RogueEntity{
 	}
 	
 	protected void init(){
-		name = "Player";
+		setName("Player");
 		width = 32;
 		height = 32;
 		maxHsp = 5;
@@ -26,6 +28,8 @@ public class Player extends RogueEntity{
 	public void tick(){
 		global.console.log("Player Coords:("+x+","+y+")");
 		global.console.log("Player Speeds:("+hsp+","+vsp+")");
+		
+		updateCollision();
 		updateInput();
 	}
 	
@@ -36,7 +40,7 @@ public class Player extends RogueEntity{
 						hsp -= 1;
 					else
 						hsp = -maxHsp;
-				}else if(global.input.right.down){
+				}else if(global.input.right.down && !stopRight){
 					if(hsp < maxHsp)
 						hsp += 1;
 					else
@@ -52,12 +56,12 @@ public class Player extends RogueEntity{
 				}
 				
 				//Movimenti Su/Giù
-				if(global.input.up.down){
+				if(global.input.up.down && !stopUp){
 					if(vsp > -maxVsp)
 						vsp -= 1;
 					else
 						vsp = -maxVsp;
-				}else if(global.input.down.down){
+				}else if(global.input.down.down && !stopDown){
 					if(vsp < maxVsp)
 						vsp += 1;
 					else
@@ -77,12 +81,57 @@ public class Player extends RogueEntity{
 				y+=vsp;
 	}
 	
+	protected void updateCollision(){
+		if(colliding){
+			if(getTopBounds().intersects(collidingEntity.getBounds())){
+				stopUp = true;
+				global.console.log("Colliding on top with " + collidingEntity.getName());
+				vsp = 0;
+			}else{
+				stopUp= false;
+			}
+			if(getBottomBounds().intersects(collidingEntity.getBounds())){
+				stopDown = true;
+				global.console.log("Colliding on bottom with " + collidingEntity.getName());
+				vsp = 0;
+			}else{
+				stopDown= false;
+			}
+			if(getLeftBounds().intersects(collidingEntity.getBounds())){
+				stopLeft = true;
+				global.console.log("Colliding on left with " + collidingEntity.getName());
+				hsp = 0;
+			}else{
+				stopLeft= false;
+			}
+			if(getRightBounds().intersects(collidingEntity.getBounds())){
+				stopRight = true;
+				global.console.log("Colliding on right with " + collidingEntity.getName());
+				hsp = 0;
+			}else{
+				stopRight= false;
+			}
+		}
+	}
+	
 	public void render(Graphics2D g){
 		g.setColor(Color.red);
 		g.fillRect(x, y, width, height);
 		g.setColor(Color.white);
 		g.drawRect(getBounds().x, getBounds().y, getBounds().width, getBounds().height);
+		g.setColor(Color.yellow);
+		g.drawRect(getTopBounds().x, getTopBounds().y, getTopBounds().width, getTopBounds().height);
+		g.drawRect(getBottomBounds().x, getBottomBounds().y, getBottomBounds().width, getBottomBounds().height);
+		g.drawRect(getLeftBounds().x, getLeftBounds().y, getLeftBounds().width, getLeftBounds().height);
+		g.drawRect(getRightBounds().x, getRightBounds().y, getRightBounds().width, getRightBounds().height);
 	}
 	
+	public void setColliding(boolean colliding){
+		this.colliding=colliding;
+	}
+
+	public void setCollidingEntity(RogueEntity collidingEntity) {
+		this.collidingEntity=collidingEntity;
+	}
 	
 }

@@ -31,7 +31,6 @@ public class LevelHandler {
 		entityCounter = 0;
 		visibleScreen = new Rectangle(-global.camX - 100,-global.camY -100,global.W_WIDTH*global.W_SCALE + 200, global.W_HEIGHT *global.W_SCALE + 200);
 		global.console.log("Visible Screen: " + visibleScreen.toString());
-		global.console.log("Player source box: " + p.getBounds());
 		updateLayer(entities);
 		updateLayer(levelMap);
 		global.camera.tick();
@@ -57,8 +56,12 @@ public class LevelHandler {
 			if(visibleScreen.contains(new Rectangle(list.get(i).getX(), list.get(i).getY(), list.get(i).getWidth(), list.get(i).getHeight()))){
 				entityCounter += 1;
 				list.get(i).tick();
+				if(list.get(i) != p && list.get(i).getBounds().intersects(p.getBounds())){
+					p.setColliding(true);
+					p.setCollidingEntity(list.get(i));
+					global.console.log("Player Collision With " + list.get(i).getName());
+				}
 			}
-			
 		}
 	}
 	

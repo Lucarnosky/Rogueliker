@@ -13,9 +13,9 @@ public class RogueEntity {
 	protected int cx,cy;
 	protected int hsp, vsp;
 	protected int maxHsp, maxVsp;
-	protected String name;
+	private String name;
 	protected boolean onScreen = false;
-	
+	private int tolerance = 2;
 	public RogueEntity(int x, int y, Global global){
 		this.x = x;
 		this.y = y;
@@ -24,7 +24,7 @@ public class RogueEntity {
 	}
 	
 	protected void init(){
-		name = "Rogue Entity";
+		setName("Rogue Entity");
 		ID = -1;
 		width = 32;
 		height = 32;
@@ -66,5 +66,41 @@ public class RogueEntity {
 	
 	public int getHeight(){
 		return height;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public Rectangle getTopBounds(){
+		if(vsp < 0)
+			return new Rectangle(x, y + vsp - tolerance, width,5);
+		return new Rectangle(x, y - tolerance, width,5);
+	}
+	
+	public Rectangle getBottomBounds(){
+		if(vsp > 0)
+			return new Rectangle(x, y +height-5 + vsp + tolerance , width,5);
+		return new Rectangle(x, y + height - 5 + tolerance, width,5);
+	}
+	
+	public Rectangle getLeftBounds(){
+		if(hsp < 0)
+			return new Rectangle(x + hsp - tolerance, y , 5,height);
+		return new Rectangle(x - tolerance, y, 5,height);
+	}
+	
+	public Rectangle getRightBounds(){
+		if(hsp > 0)
+			return new Rectangle(x + hsp + tolerance + width - 5, y , 5,height);
+		return new Rectangle(x + width - 5 + tolerance, y, 5,height);
+	}
+	
+	protected void updateCollision(){
+		
 	}
 }

@@ -12,7 +12,7 @@ public class Neutral extends RogueEntity{
 	}
 	
 	protected void init(){
-		name = "Generic Neutral";
+		setName("Generic Neutral");
 		width = 32;
 		height = 32;
 	}

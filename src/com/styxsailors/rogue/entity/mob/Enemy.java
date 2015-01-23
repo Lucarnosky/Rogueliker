@@ -13,7 +13,7 @@ public class Enemy extends RogueEntity{
 	}
 	
 	protected void init(){
-		name = "Generic Enemy";
+		setName("Generic Enemy");
 		width = 32;
 		height = 32;
 		calculateCenterCoords();

@@ -14,7 +14,7 @@ public class Environment extends RogueEntity{
 	}
 	
 	protected void init(){
-		name = "Generic Environment";
+		setName("Generic Environment");
 		width = 32;
 		height = 32;
 	}

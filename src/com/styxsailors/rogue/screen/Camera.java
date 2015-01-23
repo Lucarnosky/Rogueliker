@@ -16,12 +16,8 @@ public class Camera {
 
 	public void tick(){
 		if(entityToFollow != null){
-			
 			global.camX = -(entityToFollow.getX() - (global.W_WIDTH * global.W_SCALE / 2) );
 			global.camY = -(entityToFollow.getY() - (global.W_HEIGHT * global.W_SCALE / 2) );
-			global.console.log("Player Coords: ("+entityToFollow.getX() + "," + entityToFollow.getY() +")");
-			global.console.log("Window size: ("+global.W_WIDTH *global.W_SCALE + "," + global.W_HEIGHT *global.W_SCALE +")");
-			global.console.log("Camera Coords: ("+global.camX + "," + global.camY +")");
 		}
 	}
 	

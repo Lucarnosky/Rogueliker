@@ -14,7 +14,7 @@ public class UnpassableBlock extends Environment{
 	}
 	
 	protected void init(){
-		name = "unpassable block";
+		setName("unpassable block");
 		width = 32;
 		height = 32;
 		canPass = false;
