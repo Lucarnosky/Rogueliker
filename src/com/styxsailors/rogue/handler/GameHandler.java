@@ -12,6 +12,7 @@ public class GameHandler {
 	
 	Global global;
 	LevelHandler levelHandler;
+	EditorHandler editor;
 	
 	public GameHandler(Global global){
 		System.out.println("Creating game handler...");
@@ -21,10 +22,11 @@ public class GameHandler {
 	
 	private void init(){
 		System.out.println("Initializing game handler...");
-		global.gamestate = GameState.PLAY;
+		global.gamestate = GameState.EDITOR;
 		global.console = new Console(global);
 		global.camera = new Camera(global);
 		levelHandler = new LevelHandler(global);
+		editor = new EditorHandler(global);
 	}
 	
 	public void tick(){
@@ -39,7 +41,7 @@ public class GameHandler {
 			levelHandler.tick();
 			break;
 		case EDITOR:
-			
+			editor.tick();
 			break;
 		default:
 			break;
@@ -59,14 +61,15 @@ public class GameHandler {
 			levelHandler.render(g);
 			break;
 		case EDITOR:
-			
+			g.translate(global.camX, global.camY);
+			editor.render(g);
 			break;
 		default:
 			break;
 		
 		}
 		g.setColor(Color.white);
-		g.drawString("FPS:"+global.fps,-global.camX + global.W_WIDTH * global.W_SCALE - 20, -global.camY + global.W_HEIGHT);
+		//g.drawString("FPS:"+global.fps,-global.camX + global.W_WIDTH * global.W_SCALE - 20, -global.camY + global.W_HEIGHT);
 		global.console.render(g);
 	}
 

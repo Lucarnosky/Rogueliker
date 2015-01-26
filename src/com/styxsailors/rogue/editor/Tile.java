@@ -22,11 +22,12 @@ public class Tile extends RogueEntity{
 	}
 
 	public void tick(){
-		if(mouseOver())
+		if(mouseOver()){
 			if(global.mouse.left.down)
 				occupyID = 1;
-				
-		global.console.log("Tile Coord(" +x+","+y+")");
+			if(global.mouse.right.down)
+				occupyID = -1;
+		}
 	}
 	
 	public void render(Graphics2D g){
@@ -42,7 +43,5 @@ public class Tile extends RogueEntity{
 	public void setId(int ID){
 		occupyID = ID;
 	}
-	
-	
 	
 }

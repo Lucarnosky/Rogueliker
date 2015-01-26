@@ -9,7 +9,6 @@ public class Console {
 	boolean enable = false;
 	private Global global;
 	ArrayList<String>messages = new ArrayList<>();
-	
 	public Console(Global global){
 		this.global = global;
 	}

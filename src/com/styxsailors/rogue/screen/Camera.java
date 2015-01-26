@@ -10,8 +10,13 @@ public class Camera {
 	
 	public Camera(Global global){
 		this.global = global;
+		init();
 	}
 
+	private void init(){
+		global.camX = 0;
+		global.camY = 0;
+	}
 	public void tick(){
 		
 		if(entityToFollow != null){
@@ -19,6 +24,7 @@ public class Camera {
 			global.camX = -(entityToFollow.getX() - (global.W_WIDTH * global.W_SCALE / 2) );
 			global.camY = -(entityToFollow.getY() - (global.W_HEIGHT * global.W_SCALE / 2) );
 		}else{
+			global.console.log("[Camera] No Entity to follow");
 			updateInput();
 		}
 	}
@@ -29,16 +35,16 @@ public class Camera {
 	
 	private void updateInput(){
 		if(global.input.left.down){
-				global.camX -= 5;
-		}else if(global.input.right.down ){
 			global.camX += 5;
+		}else if(global.input.right.down ){
+			global.camX -= 5;
 		}
 		
 		//Movimenti Su/Giù
 		if(global.input.up.down){
-			global.camY -= 5;
-		}else if(global.input.down.down ){
 			global.camY += 5;
+		}else if(global.input.down.down ){
+			global.camY -= 5;
 		}
 	}
 }
