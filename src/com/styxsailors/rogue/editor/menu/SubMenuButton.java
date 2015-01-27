@@ -33,12 +33,14 @@ public class SubMenuButton {
 	public void tick(int x, int y){
 		this.x = x;
 		this.y = y;
-		if(mouseOver())
-			if(global.mouse.left.down){
-				global.mouse.releaseAll();
+		if(global.mouse.left.down){
+			if(mouseOver())
 				actionOnClick();
-				parentMenu.setClicked(false);
-			}
+			global.mouse.releaseAll();
+			parentMenu.setClicked(false);
+		}
+		if(mouseOver())
+			global.console.log("Over " + name);
 				
 	}
 	

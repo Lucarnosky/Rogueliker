@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
+import com.styxsailors.rogue.editor.menu.EditSubMenu;
 import com.styxsailors.rogue.editor.menu.FileSubMenu;
 import com.styxsailors.rogue.utils.Global;
 
@@ -21,14 +22,19 @@ public class Bar{
 	protected void init(){
 		x = -global.camX;
 		y = -global.camY;
-		selections.add(new FileSubMenu(x + 10 , y, global));
+		
+		selections.add(new FileSubMenu(x, y, global));
+		selections.add(new EditSubMenu(x, y, global));
 	}
 	
 	public void tick(){
 		x = -global.camX;
 		y = -global.camY;
+		int stepX = 53;
+		int drawX = 10;
 		for(int i = 0 ; i < selections.size(); i++){
-			selections.get(i).tick(x, y);
+			selections.get(i).tick(x +drawX, y);
+			drawX += stepX;
 		}
 	}
 	

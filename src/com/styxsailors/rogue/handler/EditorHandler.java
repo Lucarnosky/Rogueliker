@@ -16,7 +16,7 @@ public class EditorHandler {
 	Layer selectedLayer = Layer.MAIN_GRID; 
 	Global global;
 	ArrayList<Tile> grid = new ArrayList<>();
-	
+	int rows = 4, cols = 10;
 	Rectangle visibleScreen ;
 	Bar menu;
 	
@@ -30,8 +30,8 @@ public class EditorHandler {
 		global.camX = 100;
 		global.camY = 100;
 		global.camera.setEntityToFollow(null);
-		for(int i = 0; i < 320; i += 32)
-			for(int j = 0; j < 128; j +=32)
+		for(int i = 0; i < cols * 32; i += 32)
+			for(int j = 0; j < rows * 32; j +=32)
 				grid.add(new Tile(i, j, global));
 			
 	}
@@ -55,6 +55,20 @@ public class EditorHandler {
 	public void resetGrid(){
 		for(int i = 0 ; i < grid.size(); i ++)
 			grid.get(i).setId(-1);
+	}
+	
+	public void addRows(int noOfRows){
+		for(int i = rows * 32; i < (rows + noOfRows) * 32; i += 32)
+			for(int j = 0; j < cols * 32; j+= 32)	
+				grid.add(new Tile(j, i, global));
+		rows += noOfRows;
+	}
+	
+	public void addCols(int noOfCols){
+		for(int i = cols * 32; i < (cols + noOfCols) * 32; i += 32)
+			for(int j = 0; j < rows * 32; j+= 32)	
+				grid.add(new Tile(i, j, global));
+		cols += noOfCols;
 	}
 
 }
