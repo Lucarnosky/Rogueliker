@@ -23,7 +23,8 @@ public class SubMenu {
 	
 	protected void init(){
 		width = 50;
-		height = 50;
+		height = 15;
+		addMenuVoice(new SubMenuButton(x, y, global));
 	}
 	
 	public void tick(int x, int y){
@@ -31,9 +32,11 @@ public class SubMenu {
 		this.y = y;
 		int stepY = 15;
 		int drawY = 0;
-		if(mouseOver())
+		if(mouseOver()){
 			if(global.mouse.left.clicked)
 				clicked = !clicked;
+			global.console.log("Mouse Over " + name);
+		}
 		if(clicked)
 			for(int i = 0 ; i < menuVoices.size() ; i++){
 				drawY += stepY;
@@ -50,7 +53,7 @@ public class SubMenu {
 		}
 		g.fillRect(x, y, width, height);
 		g.setColor(Color.white);
-		g.drawString(name, x, y);
+		g.drawString(name, x + 10 , y + 15 );
 			
 	}
 	
@@ -64,5 +67,9 @@ public class SubMenu {
 		for(int i = 0 ; i < menuVoices.size() ; i++){
 			menuVoices.get(i).render(g);
 		}
+	}
+	
+	protected void addMenuVoice(SubMenuButton subMenu){
+		menuVoices.add(subMenu);
 	}
 }
