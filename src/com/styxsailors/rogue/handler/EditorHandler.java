@@ -51,5 +51,10 @@ public class EditorHandler {
 			grid.get(i).render(g);
 		menu.render(g);
 	}
+	
+	public void resetGrid(){
+		for(int i = 0 ; i < grid.size(); i ++)
+			grid.get(i).setId(-1);
+	}
 
 }

@@ -1,5 +1,6 @@
 package com.styxsailors.rogue.utils;
 
+import com.styxsailors.rogue.handler.EditorHandler;
 import com.styxsailors.rogue.handler.InputHandler;
 import com.styxsailors.rogue.handler.MouseHandler;
 import com.styxsailors.rogue.handler.TextureHandler;
@@ -20,5 +21,5 @@ public class Global {
 	public TextureHandler tex = new TextureHandler();
 	public int camX, camY;
 	public Camera camera;
-	
+	public EditorHandler editor;
 }

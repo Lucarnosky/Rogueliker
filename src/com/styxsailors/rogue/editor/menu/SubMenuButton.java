@@ -1,29 +1,32 @@
-package com.styxsailors.rogue.editor;
+package com.styxsailors.rogue.editor.menu;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
 
+import com.styxsailors.rogue.editor.SubMenu;
 import com.styxsailors.rogue.utils.Global;
 
 public class SubMenuButton {
 
 	protected int x,y;
-	protected String name;
+	private String name;
 	protected Global global;
-	protected int width, height;
+	protected int width, height=18;
 	protected Color notMouseOveColor = new Color(192,192,192);
 	protected Color mouseOverColor = new Color(102,178,255);
+	SubMenu parentMenu;
 	
-	public SubMenuButton(int x, int y , Global global){
+	public SubMenuButton(int x, int y ,SubMenu parentMenu, Global global){
 		this.x = x;
 		this.y = y;
 		this.global = global;
+		this.parentMenu = parentMenu;
 		init();
 	}
 	
 	private void init(){
-		name = "Generic Sub Menu Voice";
-		calculateWidth();
+		setName("Sub Menu Voice");
+		//calculateWidth();
 	}
 	
 	
@@ -34,12 +37,13 @@ public class SubMenuButton {
 			if(global.mouse.left.down){
 				global.mouse.releaseAll();
 				actionOnClick();
+				parentMenu.setClicked(false);
 			}
 				
 	}
 	
 	protected void actionOnClick(){
-		System.out.println(name + " clicked");
+		System.out.println(getName() + " clicked");
 	}
 	
 	public void render(Graphics2D g){
@@ -49,8 +53,7 @@ public class SubMenuButton {
 			g.setColor(notMouseOveColor);
 		g.fillRect(x, y, width, height);
 		g.setColor(Color.black);
-		g.drawString(name, x + 5, y + height / 2 + 3);
-		
+		g.drawString(getName(), x + 5, y + height / 2 + 3);
 	}
 	
 	protected boolean mouseOver(){
@@ -59,8 +62,26 @@ public class SubMenuButton {
 		return false;
 	}
 	
-	protected void calculateWidth(){
-		width = name.length() * 8;
-		height = 15;
+	public int calculateWidth(){
+		width = getName().length() * 8;
+		height = 18;
+		return width;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public void setWidth(int width){
+		System.out.println("Setting width");
+		this.width = width;
+	}
+
+	public int getWidth() {
+		return width;
 	}
 }

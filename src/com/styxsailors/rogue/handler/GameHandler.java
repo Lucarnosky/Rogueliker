@@ -12,7 +12,6 @@ public class GameHandler {
 	
 	Global global;
 	LevelHandler levelHandler;
-	EditorHandler editor;
 	
 	public GameHandler(Global global){
 		System.out.println("Creating game handler...");
@@ -26,7 +25,7 @@ public class GameHandler {
 		global.console = new Console(global);
 		global.camera = new Camera(global);
 		levelHandler = new LevelHandler(global);
-		editor = new EditorHandler(global);
+		global.editor = new EditorHandler(global);
 	}
 	
 	public void tick(){
@@ -41,7 +40,7 @@ public class GameHandler {
 			levelHandler.tick();
 			break;
 		case EDITOR:
-			editor.tick();
+			global.editor.tick();
 			break;
 		default:
 			break;
@@ -62,7 +61,7 @@ public class GameHandler {
 			break;
 		case EDITOR:
 			g.translate(global.camX, global.camY);
-			editor.render(g);
+			global.editor.render(g);
 			break;
 		default:
 			break;
