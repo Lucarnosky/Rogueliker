@@ -23,8 +23,7 @@ public class SubMenuButton {
 	
 	private void init(){
 		name = "Generic Sub Menu Voice";
-		width = 50;
-		height = 15;
+		calculateWidth();
 	}
 	
 	
@@ -40,7 +39,7 @@ public class SubMenuButton {
 	}
 	
 	protected void actionOnClick(){
-		// Azione da eseguire al click
+		System.out.println(name + " clicked");
 	}
 	
 	public void render(Graphics2D g){
@@ -50,7 +49,7 @@ public class SubMenuButton {
 			g.setColor(notMouseOveColor);
 		g.fillRect(x, y, width, height);
 		g.setColor(Color.black);
-		g.drawString(name, x + 5, y + 2);
+		g.drawString(name, x + 5, y + height / 2 + 3);
 		
 	}
 	
@@ -58,5 +57,10 @@ public class SubMenuButton {
 		if( global.mouse.x > x && global.mouse.x < x + width && global.mouse.y > y && global.mouse.y < y + height)
 			return true;
 		return false;
+	}
+	
+	protected void calculateWidth(){
+		width = name.length() * 8;
+		height = 15;
 	}
 }

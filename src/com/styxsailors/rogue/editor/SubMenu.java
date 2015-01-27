@@ -24,7 +24,7 @@ public class SubMenu {
 	protected void init(){
 		width = 50;
 		height = 15;
-		addMenuVoice(new SubMenuButton(x, y, global));
+		
 	}
 	
 	public void tick(int x, int y){
@@ -33,15 +33,21 @@ public class SubMenu {
 		int stepY = 15;
 		int drawY = 0;
 		if(mouseOver()){
-			if(global.mouse.left.clicked)
+			if(global.mouse.left.down){
 				clicked = !clicked;
+				global.mouse.releaseAll();
+			}
 			global.console.log("Mouse Over " + name);
 		}
-		if(clicked)
+		if(clicked){
 			for(int i = 0 ; i < menuVoices.size() ; i++){
 				drawY += stepY;
 				menuVoices.get(i).tick(x, y + drawY);
 			}
+			global.console.log("The button " + name + " is clicked");
+		}else{
+			global.console.log("The button " + name + " is not clicked");
+		}
 	}
 	
 	public void render(Graphics2D g){
@@ -64,8 +70,10 @@ public class SubMenu {
 	}
 	
 	protected void renderVoices(Graphics2D g){
+		
 		for(int i = 0 ; i < menuVoices.size() ; i++){
 			menuVoices.get(i).render(g);
+			global.console.log("Rendering voice " + menuVoices.get(i).name);
 		}
 	}
 	

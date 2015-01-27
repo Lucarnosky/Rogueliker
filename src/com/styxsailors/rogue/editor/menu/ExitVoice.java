@@ -2,31 +2,31 @@ package com.styxsailors.rogue.editor.menu;
 
 import java.awt.Graphics2D;
 
-import com.styxsailors.rogue.editor.SubMenu;
 import com.styxsailors.rogue.editor.SubMenuButton;
 import com.styxsailors.rogue.utils.Global;
 
-public class FileSubMenu extends SubMenu{
+public class ExitVoice extends SubMenuButton{
 
-	public FileSubMenu(int x, int y, Global global) {
+	public ExitVoice(int x, int y, Global global) {
 		super(x, y, global);
 		init();
 	}
 	
 	protected void init(){
-		name = "File";
-		width = 50;
-		height = 15;
-		addMenuVoice(new SubMenuButton(x, y, global));
-		addMenuVoice(new ExitVoice(x, y, global));
+		name = "Exit";
+		calculateWidth();
 	}
 	
 	public void tick(int x, int y){
-		super.tick(x,y);
+		super.tick(x, y);
 	}
 	
 	public void render(Graphics2D g){
 		super.render(g);
 	}
 	
+	protected void actionOnClick(){
+		System.exit(0);
+	}
+
 }
