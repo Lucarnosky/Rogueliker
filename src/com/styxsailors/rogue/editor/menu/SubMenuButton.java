@@ -26,22 +26,17 @@ public class SubMenuButton {
 	
 	private void init(){
 		setName("Sub Menu Voice");
-		//calculateWidth();
 	}
-	
 	
 	public void tick(int x, int y){
 		this.x = x;
 		this.y = y;
-		if(global.mouse.left.down){
-			if(mouseOver())
-				actionOnClick();
-			global.mouse.releaseAll();
-			parentMenu.setClicked(false);
-		}
 		if(mouseOver())
-			global.console.log("Over " + name);
-				
+		if(global.mouse.left.down){
+			actionOnClick();
+			global.mouse.releaseAll();
+			//parentMenu.setClicked(false);
+		}		
 	}
 	
 	protected void actionOnClick(){
@@ -65,7 +60,7 @@ public class SubMenuButton {
 	}
 	
 	public int calculateWidth(){
-		width = getName().length() * 8;
+		width = getName().length() * 10;
 		height = 18;
 		return width;
 	}
@@ -79,11 +74,11 @@ public class SubMenuButton {
 	}
 	
 	public void setWidth(int width){
-		System.out.println("Setting width");
 		this.width = width;
 	}
 
 	public int getWidth() {
 		return width;
 	}
+
 }

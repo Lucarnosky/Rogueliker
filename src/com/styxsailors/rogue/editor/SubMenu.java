@@ -46,9 +46,6 @@ public class SubMenu {
 				menuVoices.get(i).tick(x, y + drawY);
 				drawY += stepY;
 			}
-			global.console.log("The button " + name + " is clicked");
-		}else{
-			global.console.log("The button " + name + " is not clicked");
 		}
 	}
 	
@@ -88,7 +85,6 @@ public class SubMenu {
 		for(int i = 0; i < menuVoices.size(); i++){
 			menuVoices.get(i).setWidth(maxWidth);
 		}
-		System.out.println("Normalizing Width to " + maxWidth);
 	}
 
 	public boolean isClicked() {

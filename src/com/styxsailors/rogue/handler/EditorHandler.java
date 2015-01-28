@@ -15,7 +15,7 @@ public class EditorHandler {
 	}
 	Layer selectedLayer = Layer.MAIN_GRID; 
 	Global global;
-	ArrayList<Tile> grid = new ArrayList<>();
+	ArrayList<Tile> grid = new ArrayList<Tile>();
 	int rows = 4, cols = 10;
 	Rectangle visibleScreen ;
 	Bar menu;
@@ -69,6 +69,33 @@ public class EditorHandler {
 			for(int j = 0; j < rows * 32; j+= 32)	
 				grid.add(new Tile(i, j, global));
 		cols += noOfCols;
+	}
+	
+	public void removeCols(int noOfRows){
+		ArrayList<Tile> tmpGrid = new ArrayList<Tile>();
+		int tmpIndex = 0;
+		for(int i = 0; i < (cols + noOfRows) * 32; i += 32)
+			for(int j = 0; j < rows * 32; j+= 32){
+				tmpGrid.add(grid.get(tmpIndex));
+				tmpIndex += 1;
+			}
+		grid.clear();
+		grid =new ArrayList<Tile>(tmpGrid);
+		cols += noOfRows;
+	}
+	
+	public void removeRows(int noOfRows){
+		ArrayList<Tile> tmpGrid = new ArrayList<Tile>();
+		int tmpIndex = 0;
+		for(int i = 0; i < cols * 32; i += 32)
+			for(int j = 0; j <  rows * 32; j+= 32){
+				if(grid.get(tmpIndex).y < (rows+ noOfRows) * 32)
+					tmpGrid.add(grid.get(tmpIndex));
+				tmpIndex += 1;
+			}
+		grid.clear();
+		grid =new ArrayList<Tile>(tmpGrid);
+		rows += noOfRows;
 	}
 
 }

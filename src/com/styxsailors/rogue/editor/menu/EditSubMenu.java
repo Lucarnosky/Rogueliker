@@ -18,8 +18,8 @@ public class EditSubMenu extends SubMenu{
 		name = "Edit";
 		width = 50;
 		height = 15;
-		addMenuVoice(new ResizeRowVoice(x, y, this, global));
 		addMenuVoice(new ResizeColVoice(x, y, this, global));
+		addMenuVoice(new ResizeRowVoice(x, y, this, global));
 	}
 	
 	public void tick(int x, int y){

@@ -1,7 +1,5 @@
 package com.styxsailors.rogue.editor.menu.voices;
 
-import java.awt.Graphics2D;
-
 import javax.swing.JOptionPane;
 
 import com.styxsailors.rogue.editor.SubMenu;
@@ -12,25 +10,20 @@ public class ResizeColVoice extends SubMenuButton{
 
 	public ResizeColVoice(int x, int y, SubMenu parentMenu, Global global) {
 		super(x, y, parentMenu, global);
-	}
-	
-	public void tick(int x, int y){
-		super.tick(x,y);
 		init();
 	}
 	
 	private void init(){
-		setName("Add Cols");
-	}
-	
-	public void render(Graphics2D g){
-		super.render(g);
+		setName("Add Col");
 	}
 	
 	public void actionOnClick(){
-		System.out.println("Click");
 		int cols= Integer.parseInt(JOptionPane.showInputDialog("Number of cols to add "));
-		global.editor.addCols(cols);
+		if(cols > 0){
+			global.editor.addCols(cols);
+		}else{
+			global.editor.removeCols(cols);
+		}
 	}
 
 }

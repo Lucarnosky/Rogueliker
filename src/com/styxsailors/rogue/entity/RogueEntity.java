@@ -8,7 +8,7 @@ import com.styxsailors.rogue.utils.Global;
 public class RogueEntity {
 	
 	protected Global global;
-	protected int x,y,ID;
+	public int x,y,ID;
 	protected int width, height;
 	protected int cx,cy;
 	protected int hsp, vsp;

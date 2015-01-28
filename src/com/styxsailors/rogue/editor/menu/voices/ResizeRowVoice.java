@@ -1,7 +1,5 @@
 package com.styxsailors.rogue.editor.menu.voices;
 
-import java.awt.Graphics2D;
-
 import javax.swing.JOptionPane;
 
 import com.styxsailors.rogue.editor.SubMenu;
@@ -12,10 +10,6 @@ public class ResizeRowVoice extends SubMenuButton{
 
 	public ResizeRowVoice(int x, int y, SubMenu parentMenu, Global global) {
 		super(x, y, parentMenu, global);
-	}
-	
-	public void tick(int x, int y){
-		super.tick(x,y);
 		init();
 	}
 	
@@ -23,13 +17,13 @@ public class ResizeRowVoice extends SubMenuButton{
 		setName("Add Row");
 	}
 	
-	public void render(Graphics2D g){
-		super.render(g);
-	}
-	
 	public void actionOnClick(){
 		int rows= Integer.parseInt(JOptionPane.showInputDialog("Number of rows to add "));
-		global.editor.addRows(rows);
+		if(rows > 0){
+			global.editor.addRows(rows);
+		}else{
+			global.editor.removeRows(rows);
+		}
 	}
 
 }

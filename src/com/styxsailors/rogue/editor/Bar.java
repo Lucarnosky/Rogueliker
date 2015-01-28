@@ -30,7 +30,7 @@ public class Bar{
 	public void tick(){
 		x = -global.camX;
 		y = -global.camY;
-		int stepX = 53;
+		int stepX = 83;
 		int drawX = 10;
 		for(int i = 0 ; i < selections.size(); i++){
 			selections.get(i).tick(x +drawX, y);
