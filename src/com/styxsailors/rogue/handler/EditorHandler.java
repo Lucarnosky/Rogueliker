@@ -2,6 +2,7 @@ package com.styxsailors.rogue.handler;
 
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import com.styxsailors.rogue.editor.Bar;
@@ -96,6 +97,10 @@ public class EditorHandler {
 		grid.clear();
 		grid =new ArrayList<Tile>(tmpGrid);
 		rows += noOfRows;
+	}
+	
+	public ArrayList<Tile> getGrid(){
+		return grid;
 	}
 
 }

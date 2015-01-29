@@ -44,4 +44,8 @@ public class Tile extends RogueEntity{
 		occupyID = ID;
 	}
 	
+	public int getId(){
+		return occupyID;
+	}
+	
 }
