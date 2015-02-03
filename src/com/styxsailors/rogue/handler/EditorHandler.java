@@ -20,7 +20,7 @@ public class EditorHandler {
 	int rows = 4, cols = 10;
 	Rectangle visibleScreen ;
 	Bar menu;
-	
+	String levelName = "";
 	public EditorHandler(Global global){
 		this.global = global;
 		init();
@@ -102,5 +102,16 @@ public class EditorHandler {
 	public ArrayList<Tile> getGrid(){
 		return grid;
 	}
+	
+	public void setGrid(ArrayList<Tile> gridToImport){
+		grid = new ArrayList<Tile>(gridToImport);
+	}
+	
+	public Global getGlobal(){
+		return global;
+	}
 
+	public void setName(String name){
+		this.levelName = name;
+	}
 }

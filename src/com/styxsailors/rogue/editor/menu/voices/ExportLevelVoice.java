@@ -28,13 +28,12 @@ public class ExportLevelVoice extends SubMenuButton{
 		ArrayList<Tile> gridToExport = new ArrayList<>(global.editor.getGrid());
 		try {
 			PrintWriter writer  = new PrintWriter("res/levels/"+ levelName +".lvl", "UTF-8");
-			writer.write(levelName+"\n");
+			writer.write("name="+levelName+"\n");
 			for(int i = 0; i < gridToExport.size(); i ++){
-				writer.append("("+gridToExport.get(i).x+","+gridToExport.get(i).y+","+gridToExport.get(i).getId()+")\n");
+				writer.append(gridToExport.get(i).getId()+","+gridToExport.get(i).x+","+gridToExport.get(i).y+"\n");
 			}
 			writer.close();
 		} catch (FileNotFoundException | UnsupportedEncodingException e) {
-			
 			e.printStackTrace();
 		};
 		
