@@ -23,6 +23,7 @@ public class Console {
 	}
 	
 	public void render(Graphics2D g){
+		
 		if(enable){
 			g.setColor(new Color(1, 1, 1, 0.7f));
 			g.fillRect(-global.camX,-global.camY, (global.W_WIDTH * global.W_SCALE) / 3 * 2,global.W_HEIGHT * global.W_SCALE);	

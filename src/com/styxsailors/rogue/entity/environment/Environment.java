@@ -13,6 +13,10 @@ public class Environment extends RogueEntity{
 		super(x, y, global);
 	}
 	
+	public Environment(Global global) {
+		super(global);
+	}
+
 	protected void init(){
 		setName("Generic Environment");
 		width = 32;

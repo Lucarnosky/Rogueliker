@@ -2,7 +2,6 @@ package com.styxsailors.rogue.handler;
 
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import com.styxsailors.rogue.editor.Bar;
@@ -21,6 +20,8 @@ public class EditorHandler {
 	Rectangle visibleScreen ;
 	Bar menu;
 	String levelName = "";
+	int maxIndex = 0;
+	
 	public EditorHandler(Global global){
 		this.global = global;
 		init();
@@ -31,6 +32,7 @@ public class EditorHandler {
 		global.camX = 100;
 		global.camY = 100;
 		global.camera.setEntityToFollow(null);
+		maxIndex = global.ids.size() - 1;
 		for(int i = 0; i < cols * 32; i += 32)
 			for(int j = 0; j < rows * 32; j +=32)
 				grid.add(new Tile(i, j, global));
@@ -42,14 +44,22 @@ public class EditorHandler {
 		for(int i = 0 ; i < grid.size(); i ++)
 			if(visibleScreen.contains(grid.get(i).getBounds()))
 				grid.get(i).tick();
+		if(global.mouse.getMouseWheel() < 0)
+			global.mouse.setMouseWheel(0);
+		if(global.mouse.getMouseWheel() > maxIndex)
+			global.mouse.setMouseWheel(maxIndex);
+		global.selectedIndex = (int) global.mouse.getMouseWheel();
 		global.camera.tick();
 		global.console.log("Visible Screen" + visibleScreen);
+		global.console.log("Number of tile selectable: " + maxIndex);
+		global.console.log("Selected Index: "+global.selectedIndex);
 		menu.tick();
 	}
 	
 	public void render(Graphics2D g){
 		for(int i = 0 ; i < grid.size(); i ++)
 			grid.get(i).render(g);
+		g.drawImage(global.ids.get(global.selectedIndex).getTexture(), (int) global.mouse.x - 16, (int) global.mouse.y - 16, null);
 		menu.render(g);
 	}
 	

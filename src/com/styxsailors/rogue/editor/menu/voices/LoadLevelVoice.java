@@ -47,7 +47,7 @@ public class LoadLevelVoice extends SubMenuButton{
 				is.close(); 
 				global.editor.setGrid(loadedGrid);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				JOptionPane.showConfirmDialog(null, "Unable to load the specified level");
 				e.printStackTrace();
 			}               
 	    }       

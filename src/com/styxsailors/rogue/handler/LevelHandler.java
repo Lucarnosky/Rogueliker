@@ -46,6 +46,7 @@ public class LevelHandler {
 	private void loadLevel(){
 		p = new Player(100,100,global);
 		global.camera.setEntityToFollow(p);
+		System.out.println("Setting Entity to follow");
 		entities.add(p);
 		levelMap.add(new UnpassableBlock(150, 150, global));
 		levelMap.add(new Tile(190, 190, global));

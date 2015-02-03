@@ -1,5 +1,9 @@
 package com.styxsailors.rogue.utils;
 
+import java.util.ArrayList;
+
+import com.styxsailors.rogue.entity.RogueEntity;
+import com.styxsailors.rogue.entity.environment.UnpassableBlock;
 import com.styxsailors.rogue.handler.EditorHandler;
 import com.styxsailors.rogue.handler.InputHandler;
 import com.styxsailors.rogue.handler.MouseHandler;
@@ -22,4 +26,15 @@ public class Global {
 	public int camX, camY;
 	public Camera camera;
 	public EditorHandler editor;
+	public ArrayList<RogueEntity> ids = new ArrayList<RogueEntity>();
+	public int selectedIndex = 0;
+	
+	public Global(){
+		System.out.println("Initializing global variable");
+		initIds();
+	}
+	private void initIds(){
+		ids.add(new RogueEntity(this));
+		ids.add(new UnpassableBlock(this));
+	}
 }

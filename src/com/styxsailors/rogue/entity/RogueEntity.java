@@ -2,6 +2,7 @@ package com.styxsailors.rogue.entity;
 
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 
 import com.styxsailors.rogue.utils.Global;
 
@@ -18,6 +19,7 @@ public class RogueEntity {
 	private int tolerance = 2;
 	public int HP;
 	public boolean remove = false;
+	protected BufferedImage texture = null;
 	
 	public RogueEntity(int x, int y, Global global){
 		this.x = x;
@@ -26,6 +28,10 @@ public class RogueEntity {
 		
 	}
 	
+	public RogueEntity(Global global) {
+		this.global=global;
+	}
+
 	protected void init(){
 		setName("Rogue Entity");
 		ID = -1;
@@ -111,5 +117,9 @@ public class RogueEntity {
 		if( global.mouse.x > x && global.mouse.x < x + width && global.mouse.y > y && global.mouse.y < y + height)
 			return true;
 		return false;
+	}
+	
+	public BufferedImage getTexture(){
+		return texture;
 	}
 }

@@ -21,11 +21,9 @@ public class GameHandler {
 	
 	private void init(){
 		System.out.println("Initializing game handler...");
-		global.gamestate = GameState.EDITOR;
 		global.console = new Console(global);
 		global.camera = new Camera(global);
-		levelHandler = new LevelHandler(global);
-		global.editor = new EditorHandler(global);
+		changeState(GameState.EDITOR);
 	}
 	
 	public void tick(){
@@ -37,9 +35,13 @@ public class GameHandler {
 		case PAUSE:
 			break;
 		case PLAY:
+			if(levelHandler == null)
+				levelHandler = new LevelHandler(global);
 			levelHandler.tick();
 			break;
 		case EDITOR:
+			if(global.editor == null)
+				global.editor = new EditorHandler(global);
 			global.editor.tick();
 			break;
 		default:
@@ -51,25 +53,27 @@ public class GameHandler {
 	public void render(Graphics2D g){
 		
 		switch(global.gamestate){
-		case MAIN_MENU:
-			break;
-		case PAUSE:
-			break;
-		case PLAY:
-			g.translate(global.camX, global.camY);
-			levelHandler.render(g);
-			break;
-		case EDITOR:
-			g.translate(global.camX, global.camY);
-			global.editor.render(g);
-			break;
-		default:
-			break;
-		
+			case MAIN_MENU:
+				break;
+			case PAUSE:
+				break;
+			case PLAY:
+				g.translate(global.camX, global.camY);
+				levelHandler.render(g);
+				break;
+			case EDITOR:
+				g.translate(global.camX, global.camY);
+				global.editor.render(g);
+				break;
+			default:
+				break;
 		}
 		g.setColor(Color.white);
-		//g.drawString("FPS:"+global.fps,-global.camX + global.W_WIDTH * global.W_SCALE - 20, -global.camY + global.W_HEIGHT);
 		global.console.render(g);
+	}
+	
+	public void changeState(GameState state){
+		global.gamestate = state;
 	}
 
 }

@@ -2,3 +2,6 @@
 
 @date 03/02/2015
 - Added changelog
+- Added Id Handler in global class
+- Added the possibility to change the Entity to place in the Level Editor
+- Added textures

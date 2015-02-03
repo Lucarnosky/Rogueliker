@@ -20,7 +20,7 @@ public class MouseHandler implements MouseListener, MouseMotionListener, MouseWh
 	public double x, y;
 	private Global global;
 	public double mouseWheel = 0;
-	private int maxIndex = 0;
+	boolean reset = false;
 	
 	public MouseHandler(Global global){
 		this.global = global;
@@ -69,10 +69,9 @@ public class MouseHandler implements MouseListener, MouseMotionListener, MouseWh
         }
         
         public void tick() {
-            for (int i = 0; i < buttons.size(); i++) {
+        	for (int i = 0; i < buttons.size(); i++) {
             	buttons.get(i).tick();
             }
-    		
         }
         
        private void toggle(MouseEvent me, boolean pressed){
@@ -125,14 +124,18 @@ public class MouseHandler implements MouseListener, MouseMotionListener, MouseWh
 
 	@Override
 	public void mouseWheelMoved(MouseWheelEvent me) {
-		if(me.getWheelRotation() > 0 && mouseWheel > 0)
+		if(me.getWheelRotation() > 0)
 			mouseWheel -= 1;
-		if (me.getWheelRotation() < 0 && mouseWheel < maxIndex)
+		if (me.getWheelRotation() < 0)
 			mouseWheel += 1;
 	}
 	
-	public void setMaxIndex(int maxIndex){
-		this.maxIndex = maxIndex;
+	public double getMouseWheel(){
+		return mouseWheel;
+	}
+	
+	public void setMouseWheel(double mouseWheel){
+		this.mouseWheel = mouseWheel;
 	}
 
 }

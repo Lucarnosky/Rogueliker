@@ -24,9 +24,9 @@ public class Tile extends RogueEntity{
 	public void tick(){
 		if(mouseOver()){
 			if(global.mouse.left.down)
-				occupyID = 1;
+				setId(global.selectedIndex);
 			if(global.mouse.right.down)
-				occupyID = -1;
+				setId(-1);
 		}
 	}
 	
@@ -35,8 +35,7 @@ public class Tile extends RogueEntity{
 			g.setColor(Color.white);
 			g.drawRect(x, y, width, height);
 		}else{
-			g.setColor(Color.black);
-			g.fillRect(x, y, width, height);
+			g.drawImage(global.ids.get(occupyID).getTexture(), x,  y,null);
 		}
 	}
 

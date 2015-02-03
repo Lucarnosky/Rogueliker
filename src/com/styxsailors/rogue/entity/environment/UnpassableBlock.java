@@ -1,6 +1,5 @@
 package com.styxsailors.rogue.entity.environment;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
@@ -13,11 +12,18 @@ public class UnpassableBlock extends Environment{
 		init();
 	}
 	
+	public UnpassableBlock( Global global) {
+		super(global);
+		init();
+	}
+
 	protected void init(){
 		setName("unpassable block");
-		width = 32;
-		height = 32;
+		texture = global.tex.grabImage("unpassableblock");
+		width = texture.getWidth();
+		height = texture.getHeight();
 		canPass = false;
+		ID = 1;
 	}
 	
 	public void tick(){
@@ -25,8 +31,7 @@ public class UnpassableBlock extends Environment{
 	}
 	
 	public void render(Graphics2D g){
-		g.setColor(Color.black);
-		g.fillRect(x, y, width, height);
+		g.drawImage(texture, x, y,null);
 	}
 	
 	public Rectangle getBounds(){

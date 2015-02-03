@@ -53,7 +53,9 @@ public class InputHandler implements KeyListener {
         public void releseKey(Key key){
         	key.down = false;
         }
+        
         public void tick() {
+        	
                 for (int i = 0; i < keys.size(); i++) {
                         keys.get(i).tick();
                 }
@@ -68,7 +70,7 @@ public class InputHandler implements KeyListener {
         }
 
         private void toggle(KeyEvent ke, boolean pressed) {
-        	
+        		
         		if (ke.getKeyCode() == KeyEvent.VK_W) up.toggle(pressed);
                 if (ke.getKeyCode() == KeyEvent.VK_S) down.toggle(pressed);
                 if (ke.getKeyCode() == KeyEvent.VK_A) left.toggle(pressed);
