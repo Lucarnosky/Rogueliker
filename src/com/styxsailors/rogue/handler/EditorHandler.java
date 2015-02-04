@@ -17,10 +17,11 @@ public class EditorHandler {
 	Global global;
 	ArrayList<Tile> grid = new ArrayList<Tile>();
 	int rows = 4, cols = 10;
-	Rectangle visibleScreen ;
 	Bar menu;
 	String levelName = "";
 	int maxIndex = 0;
+	ArrayList<Tile> visibleGrid = new ArrayList<Tile>();
+	MinimapHandler miniMap;
 	
 	public EditorHandler(Global global){
 		this.global = global;
@@ -28,9 +29,10 @@ public class EditorHandler {
 	}
 	
 	private void init(){
-		menu = new Bar(global);
 		global.camX = 100;
 		global.camY = 100;
+		menu = new Bar(global);
+		miniMap = new MinimapHandler(global);
 		global.camera.setEntityToFollow(null);
 		maxIndex = global.ids.size() - 1;
 		for(int i = 0; i < cols * 32; i += 32)
@@ -40,25 +42,32 @@ public class EditorHandler {
 	}
 	
 	public void tick(){
-		visibleScreen = new Rectangle(-global.camX,-global.camY,global.W_WIDTH*global.W_SCALE, global.W_HEIGHT *global.W_SCALE );
-		for(int i = 0 ; i < grid.size(); i ++)
-			if(visibleScreen.contains(grid.get(i).getBounds()))
+		global.visibleScreen = new Rectangle(-global.camX - 32 ,-global.camY - 32 ,global.W_WIDTH*global.W_SCALE + 32, global.W_HEIGHT *global.W_SCALE + 32 );
+		visibleGrid.clear();
+		for(int i = 0 ; i < grid.size(); i ++){
+			if(global.visibleScreen.contains(grid.get(i).getBounds())){
 				grid.get(i).tick();
-		if(global.mouse.getMouseWheel() < 0)
-			global.mouse.setMouseWheel(0);
+				visibleGrid.add(grid.get(i));
+			}
+		}
+		miniMap.setEditorMinimapGrid(visibleGrid);
+		if(global.mouse.getMouseWheel() < 1)
+			global.mouse.setMouseWheel(1);
 		if(global.mouse.getMouseWheel() > maxIndex)
 			global.mouse.setMouseWheel(maxIndex);
 		global.selectedIndex = (int) global.mouse.getMouseWheel();
 		global.camera.tick();
-		global.console.log("Visible Screen" + visibleScreen);
+		global.console.log("Visible Screen" + global.visibleScreen);
 		global.console.log("Number of tile selectable: " + maxIndex);
 		global.console.log("Selected Index: "+global.selectedIndex);
 		menu.tick();
 	}
 	
 	public void render(Graphics2D g){
+		
 		for(int i = 0 ; i < grid.size(); i ++)
 			grid.get(i).render(g);
+		miniMap.render(g);
 		g.drawImage(global.ids.get(global.selectedIndex).getTexture(), (int) global.mouse.x - 16, (int) global.mouse.y - 16, null);
 		menu.render(g);
 	}

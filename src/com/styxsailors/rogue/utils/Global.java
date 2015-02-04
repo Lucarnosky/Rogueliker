@@ -1,5 +1,6 @@
 package com.styxsailors.rogue.utils;
 
+import java.awt.Rectangle;
 import java.util.ArrayList;
 
 import com.styxsailors.rogue.entity.RogueEntity;
@@ -28,6 +29,7 @@ public class Global {
 	public EditorHandler editor;
 	public ArrayList<RogueEntity> ids = new ArrayList<RogueEntity>();
 	public int selectedIndex = 0;
+	public Rectangle visibleScreen;
 	
 	public Global(){
 		System.out.println("Initializing global variable");

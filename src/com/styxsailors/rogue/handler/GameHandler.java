@@ -20,33 +20,48 @@ public class GameHandler {
 	}
 	
 	private void init(){
-		System.out.println("Initializing game handler...");
 		global.console = new Console(global);
 		global.camera = new Camera(global);
 		changeState(GameState.EDITOR);
+		switch(global.gamestate){
+		case EDITOR:
+			global.editor = new EditorHandler(global);
+			break;
+		case MAIN_MENU:
+			break;
+		case PAUSE:
+			break;
+		case PLAY:
+			levelHandler = new LevelHandler(global);
+			break;
+		default:
+			break;
+		}
+		
+		
+		
 	}
 	
 	public void tick(){
 		global.input.tick();
 		global.console.tick();
 		switch(global.gamestate){
-		case MAIN_MENU:
-			break;
-		case PAUSE:
-			break;
-		case PLAY:
-			if(levelHandler == null)
-				levelHandler = new LevelHandler(global);
-			levelHandler.tick();
-			break;
-		case EDITOR:
-			if(global.editor == null)
-				global.editor = new EditorHandler(global);
-			global.editor.tick();
-			break;
-		default:
-			break;
-		
+			case MAIN_MENU:
+				break;
+			case PAUSE:
+				break;
+			case PLAY:
+				if(levelHandler == null)
+					levelHandler = new LevelHandler(global);
+				levelHandler.tick();
+				break;
+			case EDITOR:
+				if(global.editor == null)
+					global.editor = new EditorHandler(global);
+				global.editor.tick();
+				break;
+			default:
+				break;
 		}
 	}
 	

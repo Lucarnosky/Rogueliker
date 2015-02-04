@@ -1,5 +1,6 @@
 package com.styxsailors.rogue.entity;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -20,6 +21,7 @@ public class RogueEntity {
 	public int HP;
 	public boolean remove = false;
 	protected BufferedImage texture = null;
+	protected Color minimapColor = Color.gray;
 	
 	public RogueEntity(int x, int y, Global global){
 		this.x = x;
@@ -121,5 +123,9 @@ public class RogueEntity {
 	
 	public BufferedImage getTexture(){
 		return texture;
+	}
+	
+	public Color getMinimapColor(){
+		return minimapColor;
 	}
 }

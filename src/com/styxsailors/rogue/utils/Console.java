@@ -27,7 +27,7 @@ public class Console {
 		if(enable){
 			g.setColor(new Color(1, 1, 1, 0.7f));
 			g.fillRect(-global.camX,-global.camY, (global.W_WIDTH * global.W_SCALE) / 3 * 2,global.W_HEIGHT * global.W_SCALE);	
-			g.setColor(Color.white);
+			g.setColor(Color.cyan);
 			int stepY = 12;
 			int drawY = 10;
 			for(int i = 0; i < messages.size(); i ++){

@@ -22,6 +22,7 @@ public class Player extends RogueEntity{
 		height = 32;
 		maxHsp = 5;
 		maxVsp = 5;
+		minimapColor = Color.white;
 		calculateCenterCoords();
 	}
 	

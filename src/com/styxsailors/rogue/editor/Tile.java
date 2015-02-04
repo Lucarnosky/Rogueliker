@@ -28,6 +28,11 @@ public class Tile extends RogueEntity{
 			if(global.mouse.right.down)
 				setId(-1);
 		}
+		if(occupyID != -1){
+			minimapColor = global.ids.get(occupyID).getMinimapColor();
+		}else{
+			minimapColor = Color.white;
+		}
 	}
 	
 	public void render(Graphics2D g){

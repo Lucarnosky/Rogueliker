@@ -1,4 +1,7 @@
 ///		Changelog		///
+@date 04/02/2015
+- Added Minimap In Editor
+- Added Minimap color to every RogueEntity
 
 @date 03/02/2015
 - Added changelog

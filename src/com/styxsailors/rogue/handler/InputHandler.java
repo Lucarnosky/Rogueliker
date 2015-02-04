@@ -55,7 +55,6 @@ public class InputHandler implements KeyListener {
         }
         
         public void tick() {
-        	
                 for (int i = 0; i < keys.size(); i++) {
                         keys.get(i).tick();
                 }

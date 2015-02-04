@@ -1,5 +1,6 @@
 package com.styxsailors.rogue.entity.environment;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
@@ -24,6 +25,7 @@ public class UnpassableBlock extends Environment{
 		height = texture.getHeight();
 		canPass = false;
 		ID = 1;
+		minimapColor = Color.black;
 	}
 	
 	public void tick(){
