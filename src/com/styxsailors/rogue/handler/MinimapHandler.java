@@ -38,19 +38,21 @@ public class MinimapHandler {
 	private void renderInGameMiniMap(Graphics2D g) {
 		double drawX = -global.camX + 50;
 		double drawY = -global.camY + 50;
+		
 		for(int i = 0; i < miniMapGrid.size();i ++){
 			g.setColor(miniMapGrid.get(i).getMinimapColor());
 			g.fillRect((int)drawX + miniMapGrid.get(i).getX()/reductionScale, (int)drawY +miniMapGrid.get(i).getY()/reductionScale, (int)minimapTileSize,(int) minimapTileSize);
-		}
-		
+		}		
 	}
 
 	private void renderEditorMiniMap(Graphics2D g){
 		double drawX = -global.camX + 50;
 		double drawY = -global.camY + 50;
+		double scaledStartX = global.visibleScreen.getX() / reductionScale;
+		double scaledStartY = global.visibleScreen.getY() / reductionScale;
 		for(int i = 0; i < miniMapEditorGrid.size();i ++){
 			g.setColor(miniMapEditorGrid.get(i).getMinimapColor());
-			g.fillRect((int)drawX + miniMapEditorGrid.get(i).getX()/reductionScale, (int)drawY +miniMapEditorGrid.get(i).getY()/reductionScale, (int)minimapTileSize,(int) minimapTileSize);
+			g.fillRect((int)drawX - (int)scaledStartX + miniMapEditorGrid.get(i).getX()/reductionScale,(int)drawY - (int)scaledStartY +miniMapEditorGrid.get(i).getY()/reductionScale, (int)minimapTileSize,(int) minimapTileSize);
 		}
 		global.console.log("Tile 0 ("+miniMapEditorGrid.get(0).getX()+","+miniMapEditorGrid.get(0).getY()+")");
 	}
