@@ -11,7 +11,6 @@ import com.styxsailors.rogue.utils.Global.GameState;
 public class GameHandler {
 	
 	Global global;
-	LevelHandler levelHandler;
 	
 	public GameHandler(Global global){
 		System.out.println("Creating game handler...");
@@ -22,7 +21,7 @@ public class GameHandler {
 	private void init(){
 		global.console = new Console(global);
 		global.camera = new Camera(global);
-		changeState(GameState.EDITOR);
+		changeState(GameState.PLAY);
 		switch(global.gamestate){
 		case EDITOR:
 			global.editor = new EditorHandler(global);
@@ -32,7 +31,7 @@ public class GameHandler {
 		case PAUSE:
 			break;
 		case PLAY:
-			levelHandler = new LevelHandler(global);
+			global.level = new LevelHandler(global);
 			break;
 		default:
 			break;
@@ -51,13 +50,9 @@ public class GameHandler {
 			case PAUSE:
 				break;
 			case PLAY:
-				if(levelHandler == null)
-					levelHandler = new LevelHandler(global);
-				levelHandler.tick();
+				global.level.tick();
 				break;
 			case EDITOR:
-				if(global.editor == null)
-					global.editor = new EditorHandler(global);
 				global.editor.tick();
 				break;
 			default:
@@ -74,7 +69,7 @@ public class GameHandler {
 				break;
 			case PLAY:
 				g.translate(global.camX, global.camY);
-				levelHandler.render(g);
+				global.level.render(g);
 				break;
 			case EDITOR:
 				g.translate(global.camX, global.camY);

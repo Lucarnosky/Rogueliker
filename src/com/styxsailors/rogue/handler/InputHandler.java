@@ -43,6 +43,7 @@ public class InputHandler implements KeyListener {
         public Key right = new Key();
         public Key console = new Key();
         public Key pause = new Key();
+        public Key minimap = new Key();
         
         public void releaseAll() {
                 for (int i = 0; i < keys.size(); i++) {
@@ -78,6 +79,7 @@ public class InputHandler implements KeyListener {
                 if (ke.getKeyCode() == KeyEvent.VK_DOWN) down.toggle(pressed);
                 if (ke.getKeyCode() == KeyEvent.VK_LEFT) left.toggle(pressed);
                 if (ke.getKeyCode() == KeyEvent.VK_RIGHT) right.toggle(pressed);
+                if (ke.getKeyCode() == KeyEvent.VK_M) minimap.toggle(pressed);
                 if (ke.getKeyCode() == KeyEvent.VK_C) console.toggle(pressed);
                 if (ke.getKeyCode() == KeyEvent.VK_P) pause.toggle(pressed);
         }

@@ -16,13 +16,21 @@ public class Player extends RogueEntity{
 		init();
 	}
 	
+	public Player(Global global) {
+		super(global);
+		init();
+	}
+
 	protected void init(){
 		setName("Player");
 		width = 32;
 		height = 32;
 		maxHsp = 5;
 		maxVsp = 5;
+		ID = 0;
 		minimapColor = Color.white;
+		texture = global.tex.grabImage("player");
+		minimapColor = Color.red;
 		calculateCenterCoords();
 	}
 	

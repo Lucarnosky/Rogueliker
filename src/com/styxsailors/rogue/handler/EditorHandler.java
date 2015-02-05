@@ -1,5 +1,6 @@
 package com.styxsailors.rogue.handler;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ public class EditorHandler {
 	Layer selectedLayer = Layer.MAIN_GRID; 
 	Global global;
 	ArrayList<Tile> grid = new ArrayList<Tile>();
-	int rows = 4, cols = 10;
+	int rows = 10, cols = 30;
 	Bar menu;
 	String levelName = "";
 	int maxIndex = 0;
@@ -51,8 +52,8 @@ public class EditorHandler {
 			}
 		}
 		miniMap.setEditorMinimapGrid(visibleGrid);
-		if(global.mouse.getMouseWheel() < 1)
-			global.mouse.setMouseWheel(1);
+		if(global.mouse.getMouseWheel() < 0)
+			global.mouse.setMouseWheel(0);
 		if(global.mouse.getMouseWheel() > maxIndex)
 			global.mouse.setMouseWheel(maxIndex);
 		global.selectedIndex = (int) global.mouse.getMouseWheel();
@@ -69,9 +70,34 @@ public class EditorHandler {
 			grid.get(i).render(g);
 		miniMap.render(g);
 		g.drawImage(global.ids.get(global.selectedIndex).getTexture(), (int) global.mouse.x - 16, (int) global.mouse.y - 16, null);
+		renderToolWindow(g);
 		menu.render(g);
 	}
 	
+	private void renderToolWindow(Graphics2D g) {
+		int x = -global.camX;
+		int y = -global.camY + 150;
+		g.setColor(new Color(1f,1f,1f,0.7f));
+		g.fillRect(x , y, 200, global.W_HEIGHT * global.W_SCALE);
+		int stepX = x + 10;
+		int stepY = y + 20;
+		g.setColor(Color.white);
+		if(levelName.equals(""))
+			levelName = "Unnamed";
+		g.drawString("Level Name: " + levelName, stepX, stepY);
+		stepY += 12;
+		g.drawString("Selected Object: " + global.ids.get(global.selectedIndex).getName(), stepX, stepY);
+		stepY += 10;
+		for(int i = 0; i < global.ids.size(); i++){
+			g.drawImage(global.ids.get(i).getTexture(), stepX, stepY,null);
+			if(global.selectedIndex == i){
+				g.setColor(Color.yellow);
+				g.drawRect(stepX, stepY, 32, 32);
+			}
+			stepX += 32;
+		}
+	}
+
 	public void resetGrid(){
 		for(int i = 0 ; i < grid.size(); i ++)
 			grid.get(i).setId(-1);

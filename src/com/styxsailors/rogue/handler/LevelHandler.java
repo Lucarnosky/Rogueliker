@@ -2,7 +2,14 @@ package com.styxsailors.rogue.handler;
 
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
 
 import com.styxsailors.rogue.editor.Tile;
 import com.styxsailors.rogue.entity.Player;
@@ -25,7 +32,7 @@ public class LevelHandler {
 	}
 	
 	private void init(){
-		loadLevel();
+		loadLevel("test");
 	}
 	
 	public void tick(){
@@ -43,13 +50,44 @@ public class LevelHandler {
 		renderLayer(levelMap, g);
 	}
 	
-	private void loadLevel(){
-		p = new Player(100,100,global);
-		global.camera.setEntityToFollow(p);
-		System.out.println("Setting Entity to follow");
+	private void loadLevel(String levelName){
+		ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+		InputStream is = classloader.getResourceAsStream("levels/"+levelName+".lvl");
+		BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+		String str = "";
+	    if (is!=null) {                         
+	        try {
+				while ((str = reader.readLine()) != null) { 
+				   if(str.contains("name")){
+					  
+				   }else{
+					   String[] tmp = str.split(",");
+					   if(!tmp[0].equals("-1")){
+						   	RogueEntity tmpClass = null;
+						   	tmpClass = global.ids.get(Integer.parseInt(tmp[0])).getClass().asSubclass(global.ids.get(Integer.parseInt(tmp[0])).getClass()).getConstructor(int.class,int.class,Global.class).newInstance(Integer.parseInt(tmp[1]),Integer.parseInt(tmp[2]),global);
+						   	tmpClass.setX(Integer.parseInt(tmp[1]));
+						   	tmpClass.setY(Integer.parseInt(tmp[2]));
+					   		System.out.println("Tmp Class: " +tmpClass.getName()+ " ("+tmpClass.getX()+","+tmpClass.getY()+")");
+					   		if(tmpClass.ID == 0){
+					   			global.camera.setEntityToFollow(tmpClass);
+					   			p = (Player) tmpClass;
+					   			entities.add(tmpClass);
+					   		}else{
+					   			levelMap.add(tmpClass);
+					   		}
+					   }
+				   }
+				}
+				is.close(); 
+				for(int i = 0; i < levelMap.size(); i++){
+					System.out.println("Tmp Class: " +levelMap.get(i).getName()+ " ("+levelMap.get(i).getX()+","+levelMap.get(i).getY()+")");
+				}
+			} catch (IOException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
+				JOptionPane.showConfirmDialog(null, "Unable to load the specified level");
+				e.printStackTrace();
+			}               
+	    }       
 		entities.add(p);
-		levelMap.add(new UnpassableBlock(150, 150, global));
-		levelMap.add(new Tile(190, 190, global));
 		
 	}
 	

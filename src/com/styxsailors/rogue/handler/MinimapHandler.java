@@ -25,14 +25,20 @@ public class MinimapHandler {
 	}
 	
 	public void render(Graphics2D g){
-		int mapWidth = (int)global.visibleScreen.getWidth() / reductionScale;
-		int mapHeight = (int)global.visibleScreen.getHeight() / reductionScale;
-		g.setColor(new Color(1.0f,0.3f,1.0f, 0.7f));
-		g.fillRect(-global.camX + 50, -global.camY + 50, mapWidth, mapHeight);
-		if(!miniMapEditorGrid.isEmpty())
-			renderEditorMiniMap(g);
-		else if(!miniMapGrid.isEmpty())
-			renderInGameMiniMap(g);
+		if(global.input.minimap.down){
+			global.input.releseKey(global.input.minimap);
+			global.enableMinimap = !global.enableMinimap;
+		}
+		if(global.enableMinimap){
+			int mapWidth = (int)global.visibleScreen.getWidth() / reductionScale;
+			int mapHeight = (int)global.visibleScreen.getHeight() / reductionScale;
+			g.setColor(new Color(1.0f,0.3f,1.0f, 0.7f));
+			g.fillRect(-global.camX + 50, -global.camY + 50, mapWidth, mapHeight);
+			if(!miniMapEditorGrid.isEmpty())
+				renderEditorMiniMap(g);
+			else if(!miniMapGrid.isEmpty())
+				renderInGameMiniMap(g);
+		}
 	}
 	
 	private void renderInGameMiniMap(Graphics2D g) {

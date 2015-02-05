@@ -128,4 +128,12 @@ public class RogueEntity {
 	public Color getMinimapColor(){
 		return minimapColor;
 	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+	
+	public void setY(int y){
+		this.y = y;
+	}
 }

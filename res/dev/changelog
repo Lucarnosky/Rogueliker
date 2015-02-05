@@ -1,4 +1,8 @@
 ///		Changelog		///
+@date 05/02/2015
+- Loading Level InGame working with id handler
+- Added toolbox in levelEditor
+
 @date 04/02/2015
 - Added Minimap In Editor
 - Added Minimap color to every RogueEntity
