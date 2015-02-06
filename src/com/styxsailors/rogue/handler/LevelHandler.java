@@ -32,7 +32,7 @@ public class LevelHandler {
 	}
 	
 	private void init(){
-		loadLevel("test");
+		loadLevel("testingdoor");
 		miniMap = new MinimapHandler(global);
 	}
 	

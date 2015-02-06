@@ -1,4 +1,8 @@
 ///		Changelog		///
+@date 06/02/2015
+- Added create room voice in edit menu
+- Added semi-working half brick of wall
+
 @date 05/02/2015
 - Loading Level InGame working with id handler
 - Added toolbox in levelEditor

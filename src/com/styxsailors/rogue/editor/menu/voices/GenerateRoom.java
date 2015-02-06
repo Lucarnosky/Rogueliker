@@ -5,18 +5,17 @@ import java.util.ArrayList;
 import com.styxsailors.rogue.editor.SubMenu;
 import com.styxsailors.rogue.editor.Tile;
 import com.styxsailors.rogue.editor.menu.SubMenuButton;
-import com.styxsailors.rogue.entity.environment.UnpassableBlock;
 import com.styxsailors.rogue.utils.Global;
 
-public class GenerateBorderWall extends SubMenuButton{
+public class GenerateRoom extends SubMenuButton{
 
-	public GenerateBorderWall(int x, int y, SubMenu parentMenu, Global global) {
+	public GenerateRoom(int x, int y, SubMenu parentMenu, Global global) {
 		super(x, y, parentMenu, global);
 		init();
 	}
 	
 	private void init(){
-		setName("Generate Border Wall");
+		setName("Generate Room");
 	}
 	
 	public void actionOnClick(){
@@ -28,6 +27,8 @@ public class GenerateBorderWall extends SubMenuButton{
 			double tileY = gridToExport.get(i).getY();
 			if(tileX == 0 || tileX/32 == cols - 1 || tileY == 0 || tileY/32 == rows - 1)
 				gridToExport.get(i).setId(1);
+			else if(gridToExport.get(i).getId() == -1)
+				gridToExport.get(i).setId(2);
 		}
 		global.editor.setGrid(gridToExport);
 	}

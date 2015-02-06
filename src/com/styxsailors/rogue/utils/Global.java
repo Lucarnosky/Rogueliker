@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import com.styxsailors.rogue.entity.Player;
 import com.styxsailors.rogue.entity.RogueEntity;
 import com.styxsailors.rogue.entity.environment.Floor;
+import com.styxsailors.rogue.entity.environment.HalfUnpassableVertical;
 import com.styxsailors.rogue.entity.environment.UnpassableBlock;
 import com.styxsailors.rogue.handler.EditorHandler;
 import com.styxsailors.rogue.handler.InputHandler;
@@ -46,6 +47,7 @@ public class Global {
 		ids.add(new Player(this));
 		ids.add(new UnpassableBlock(this));
 		ids.add(new Floor(this));
+		ids.add(new HalfUnpassableVertical(this));
 	}
 	
 	public Color fromRGBToFloat(int r, int g, int b, float alpha){
