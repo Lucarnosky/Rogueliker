@@ -56,6 +56,8 @@ public class EditorHandler {
 			global.mouse.setMouseWheel(0);
 		if(global.mouse.getMouseWheel() > maxIndex)
 			global.mouse.setMouseWheel(maxIndex);
+		if(global.mouse.middle.down)
+			fillEmptyTile();
 		global.selectedIndex = (int) global.mouse.getMouseWheel();
 		global.camera.tick();
 		global.console.log("Visible Screen" + global.visibleScreen);
@@ -158,5 +160,20 @@ public class EditorHandler {
 
 	public void setName(String name){
 		this.levelName = name;
+	}
+	
+	protected void fillEmptyTile(){
+		for(int i = 0; i < grid.size(); i++){
+			if(grid.get(i).getId() == -1)
+				grid.get(i).setId(global.selectedIndex);
+		}
+	}
+	
+	public int getRows(){
+		return rows;
+	}
+	
+	public int getCols(){
+		return cols;
 	}
 }

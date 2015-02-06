@@ -10,7 +10,8 @@ import com.styxsailors.rogue.utils.Global;
 public class RogueEntity {
 	
 	protected Global global;
-	public int x,y,ID;
+	public int x,y;
+	public static int ID;
 	protected int width, height;
 	protected int cx,cy;
 	protected int hsp, vsp;
@@ -40,6 +41,11 @@ public class RogueEntity {
 		width = 32;
 		height = 32;
 		calculateCenterCoords();
+	}
+	
+	protected void calculateDefault(){
+		width = texture.getWidth();
+		height = texture.getHeight();
 	}
 	
 	public void tick(){

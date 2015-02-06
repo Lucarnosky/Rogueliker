@@ -1,10 +1,12 @@
 package com.styxsailors.rogue.utils;
 
+import java.awt.Color;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
 import com.styxsailors.rogue.entity.Player;
 import com.styxsailors.rogue.entity.RogueEntity;
+import com.styxsailors.rogue.entity.environment.Floor;
 import com.styxsailors.rogue.entity.environment.UnpassableBlock;
 import com.styxsailors.rogue.handler.EditorHandler;
 import com.styxsailors.rogue.handler.InputHandler;
@@ -43,6 +45,14 @@ public class Global {
 	private void initIds(){
 		ids.add(new Player(this));
 		ids.add(new UnpassableBlock(this));
+		ids.add(new Floor(this));
+	}
+	
+	public Color fromRGBToFloat(int r, int g, int b, float alpha){
+		float rf = r/255;
+		float gf = g / 255;
+		float bf = b / 255;
+		return new Color(rf,gf,bf,alpha);
 	}
 	
 }

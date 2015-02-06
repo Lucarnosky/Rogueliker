@@ -15,7 +15,7 @@ public class MinimapHandler {
 	ArrayList<Tile> miniMapEditorGrid = new ArrayList<Tile>();
 	int reductionScale = 10;
 	double minimapTileSize = 3.2;
-	
+	Color backgroundColor = new Color(1f,0.416f,0f,0.7f);
 	public MinimapHandler(Global global){
 		this.global = global;
 	}
@@ -32,7 +32,9 @@ public class MinimapHandler {
 		if(global.enableMinimap){
 			int mapWidth = (int)global.visibleScreen.getWidth() / reductionScale;
 			int mapHeight = (int)global.visibleScreen.getHeight() / reductionScale;
-			g.setColor(new Color(1.0f,0.3f,1.0f, 0.7f));
+			g.setColor(Color.black);
+			g.drawRect(-global.camX + 50, -global.camY + 50, mapWidth, mapHeight);
+			g.setColor(backgroundColor);
 			g.fillRect(-global.camX + 50, -global.camY + 50, mapWidth, mapHeight);
 			if(!miniMapEditorGrid.isEmpty())
 				renderEditorMiniMap(g);

@@ -111,7 +111,7 @@ public class Rogue extends Canvas implements Runnable {
 		
 		Graphics2D g = (Graphics2D) bs.getDrawGraphics();
 		
-		g.setColor(Color.blue);
+		g.setColor(Color.black);
 		g.fillRect(0, 0, getWidth(), getHeight());
 		g.setFont(defaultFont);
 		//g.translate(global.camX, global.camY);

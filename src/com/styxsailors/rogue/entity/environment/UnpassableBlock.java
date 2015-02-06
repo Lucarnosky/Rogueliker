@@ -21,11 +21,10 @@ public class UnpassableBlock extends Environment{
 	protected void init(){
 		setName("unpassable block");
 		texture = global.tex.grabImage("unpassableblock");
-		width = texture.getWidth();
-		height = texture.getHeight();
 		canPass = false;
 		ID = 1;
-		minimapColor = Color.black;
+		minimapColor = new Color (0.502f,0.502f,0.502f,0.7f);
+		calculateDefault();
 	}
 	
 	public void tick(){

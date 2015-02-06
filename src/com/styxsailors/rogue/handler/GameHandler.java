@@ -21,7 +21,7 @@ public class GameHandler {
 	private void init(){
 		global.console = new Console(global);
 		global.camera = new Camera(global);
-		changeState(GameState.PLAY);
+		changeState(GameState.EDITOR);
 		switch(global.gamestate){
 		case EDITOR:
 			global.editor = new EditorHandler(global);

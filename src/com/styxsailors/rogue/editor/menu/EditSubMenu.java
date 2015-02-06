@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 
 import com.styxsailors.rogue.editor.SubMenu;
 import com.styxsailors.rogue.editor.menu.voices.ExportLevelVoice;
+import com.styxsailors.rogue.editor.menu.voices.GenerateBorderWall;
 import com.styxsailors.rogue.editor.menu.voices.LoadLevelVoice;
 import com.styxsailors.rogue.editor.menu.voices.ResizeColVoice;
 import com.styxsailors.rogue.editor.menu.voices.ResizeRowVoice;
@@ -24,6 +25,7 @@ public class EditSubMenu extends SubMenu{
 		addMenuVoice(new ResizeRowVoice(x, y, this, global));
 		addMenuVoice(new ExportLevelVoice(x, y, this, global));
 		addMenuVoice(new LoadLevelVoice(x, y, this, global));
+		addMenuVoice(new GenerateBorderWall(x, y, this, global));
 	}
 	
 	public void tick(int x, int y){
