@@ -44,6 +44,8 @@ public class InputHandler implements KeyListener {
         public Key console = new Key();
         public Key pause = new Key();
         public Key minimap = new Key();
+        public Key bottomLayer = new Key();
+        public Key mainLayer = new Key();
         
         public void releaseAll() {
                 for (int i = 0; i < keys.size(); i++) {
@@ -71,6 +73,7 @@ public class InputHandler implements KeyListener {
 
         private void toggle(KeyEvent ke, boolean pressed) {
         		
+        		///Basic Keys
         		if (ke.getKeyCode() == KeyEvent.VK_W) up.toggle(pressed);
                 if (ke.getKeyCode() == KeyEvent.VK_S) down.toggle(pressed);
                 if (ke.getKeyCode() == KeyEvent.VK_A) left.toggle(pressed);
@@ -82,6 +85,10 @@ public class InputHandler implements KeyListener {
                 if (ke.getKeyCode() == KeyEvent.VK_M) minimap.toggle(pressed);
                 if (ke.getKeyCode() == KeyEvent.VK_C) console.toggle(pressed);
                 if (ke.getKeyCode() == KeyEvent.VK_P) pause.toggle(pressed);
+                
+                ///Editor Keys
+                if (ke.getKeyCode() == KeyEvent.VK_F1) bottomLayer.toggle(pressed);
+                if (ke.getKeyCode() == KeyEvent.VK_F2) mainLayer.toggle(pressed);
         }
 
         public void keyTyped(Key key) {

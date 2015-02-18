@@ -6,8 +6,6 @@ import com.styxsailors.rogue.entity.RogueEntity;
 import com.styxsailors.rogue.utils.Global;
 
 public class Environment extends RogueEntity{
-
-	protected boolean canPass = true;
 	
 	public Environment(int x, int y, Global global) {
 		super(x, y, global);
@@ -29,10 +27,6 @@ public class Environment extends RogueEntity{
 	
 	public void render(Graphics2D g){
 		
-	}
-	
-	public boolean canPass(){
-		return canPass;
 	}
 
 }

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import com.styxsailors.rogue.editor.menu.EditSubMenu;
 import com.styxsailors.rogue.editor.menu.FileSubMenu;
+import com.styxsailors.rogue.editor.menu.ToolSubMenu;
 import com.styxsailors.rogue.utils.Global;
 
 public class Bar{
@@ -25,6 +26,7 @@ public class Bar{
 		
 		selections.add(new FileSubMenu(x, y, global));
 		selections.add(new EditSubMenu(x, y, global));
+		selections.add(new ToolSubMenu(x, y, global));
 	}
 	
 	public void tick(){

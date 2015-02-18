@@ -37,6 +37,7 @@ public class Global {
 	public int selectedIndex = 0;
 	public Rectangle visibleScreen;
 	public boolean enableMinimap = true;
+	public int noOfEntityUpdating = 0;
 	
 	public Global(){
 		System.out.println("Initializing global variable");

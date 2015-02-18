@@ -17,11 +17,12 @@ public class Floor extends Environment{
 	}
 	
 	protected void init(){
-		setName("Floor");
+		setName("floor");
 		texture = global.tex.grabImage("floor");
 		canPass = true;
 		ID = 2;
 		minimapColor = global.fromRGBToFloat(76, 255, 0, 0.7f);
+		calculateDefault();
 	}
 	
 	public void tick(){

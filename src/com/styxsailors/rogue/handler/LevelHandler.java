@@ -49,8 +49,8 @@ public class LevelHandler {
 	}
 	
 	public void render(Graphics2D g){
-		renderLayer(entities, g);
 		renderLayer(levelMap, g);
+		renderLayer(entities, g);
 		miniMap.render(g);
 	}
 	
@@ -69,10 +69,10 @@ public class LevelHandler {
 					   if(!tmp[0].equals("-1")){
 						   	RogueEntity tmpClass = null;
 						   	tmpClass = global.ids.get(Integer.parseInt(tmp[0])).getClass().asSubclass(global.ids.get(Integer.parseInt(tmp[0])).getClass()).getConstructor(int.class,int.class,Global.class).newInstance(Integer.parseInt(tmp[1]),Integer.parseInt(tmp[2]),global);
-					   		if(tmpClass.ID == 0){
+						   	if(tmpClass.ID == 0){
 					   			global.camera.setEntityToFollow(tmpClass);
 					   			p = (Player) tmpClass;
-					   			entities.add(tmpClass);
+					   			entities.add(p);
 					   		}else{
 					   			levelMap.add(tmpClass);
 					   		}
@@ -80,13 +80,14 @@ public class LevelHandler {
 				   }
 				}
 				is.close(); 
+				for(int i = 0; i < levelMap.size();i++){
+					System.out.println(levelMap.get(i).getName());
+				}
 			} catch (IOException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
 				JOptionPane.showConfirmDialog(null, "Unable to load the specified level");
 				e.printStackTrace();
 			}               
 	    }       
-		entities.add(p);
-		
 	}
 	
 	private void updateLayer(ArrayList<RogueEntity> list){

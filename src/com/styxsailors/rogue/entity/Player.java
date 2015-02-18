@@ -25,8 +25,8 @@ public class Player extends RogueEntity{
 		setName("Player");
 		width = 32;
 		height = 32;
-		maxHsp = 5;
-		maxVsp = 5;
+		maxHsp = 3;
+		maxVsp = 3;
 		ID = 0;
 		minimapColor = Color.white;
 		texture = global.tex.grabImage("player");
@@ -90,7 +90,7 @@ public class Player extends RogueEntity{
 	}
 	
 	protected void updateCollision(){
-		if(colliding){
+		if(colliding && !collidingEntity.canPass()){
 			if(getTopBounds().intersects(collidingEntity.getBounds())){
 				stopUp = true;
 				global.console.log("Colliding on top with " + collidingEntity.getName());
@@ -119,6 +119,11 @@ public class Player extends RogueEntity{
 			}else{
 				stopRight= false;
 			}
+		}else{
+			stopLeft = false;
+			stopUp = false;
+			stopRight = false;
+			stopDown = false;
 		}
 	}
 	

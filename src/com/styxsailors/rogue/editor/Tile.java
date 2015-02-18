@@ -9,6 +9,7 @@ import com.styxsailors.rogue.utils.Global;
 public class Tile extends RogueEntity{
 	
 	private int occupyID = -1;
+	private boolean property = false;
 	
 	public Tile(int x, int y, Global global) {
 		super(x, y, global);
@@ -22,11 +23,17 @@ public class Tile extends RogueEntity{
 	}
 
 	public void tick(){
+		global.noOfEntityUpdating += 1;
 		if(mouseOver()){
+			global.console.log("Updating tile ID: " + occupyID);
 			if(global.mouse.left.down)
 				setId(global.selectedIndex);
 			if(global.mouse.right.down)
 				setId(-1);
+			if(global.mouse.middle.down){
+				property = !property;
+				global.mouse.releaseAll();
+			}
 		}
 		if(occupyID != -1){
 			minimapColor = global.ids.get(occupyID).getMinimapColor();
@@ -41,6 +48,10 @@ public class Tile extends RogueEntity{
 			g.drawRect(x, y, width, height);
 		}else{
 			g.drawImage(global.ids.get(occupyID).getTexture(), x,  y,null);
+		}
+		if (property){
+			g.setColor(new Color(1,1,1,0.4f));
+			g.fillRect(x + width / 2, y + height / 2, 50, 50);
 		}
 	}
 

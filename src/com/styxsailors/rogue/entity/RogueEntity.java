@@ -23,6 +23,7 @@ public class RogueEntity {
 	public boolean remove = false;
 	protected BufferedImage texture = null;
 	protected Color minimapColor = Color.gray;
+	protected boolean canPass = true;
 	
 	public RogueEntity(int x, int y, Global global){
 		this.x = x;
@@ -142,4 +143,9 @@ public class RogueEntity {
 	public void setY(int y){
 		this.y = y;
 	}
+	
+	public boolean canPass(){
+		return canPass;
+	}
+	
 }
