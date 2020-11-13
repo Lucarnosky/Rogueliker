@@ -29,7 +29,7 @@ public class GenerateRoom extends SubMenuButton{
 		for(int i = 0; i < mainGridToExport.size(); i++){
 			double tileX = mainGridToExport.get(i).getX();
 			double tileY = mainGridToExport.get(i).getY();
-			if(tileX == 0 || tileX/32 == cols - 1 || tileY == 0 || tileY/32 == rows - 1){
+			if(tileX == 0 || tileX/32 == cols - 1 || tileY == 0 || tileY/32 == rows - 1){ 
 				mainGridToExport.get(i).setId(1);
 			}
 			if(bottomGridToExport.get(i).getId() == -1){

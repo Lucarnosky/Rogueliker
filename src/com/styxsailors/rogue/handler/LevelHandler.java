@@ -32,7 +32,7 @@ public class LevelHandler {
 	}
 	
 	private void init(){
-		loadLevel("testingdoor");
+		loadLevel("test2");
 		miniMap = new MinimapHandler(global);
 	}
 	
@@ -62,7 +62,7 @@ public class LevelHandler {
 	    if (is!=null) {                         
 	        try {
 				while ((str = reader.readLine()) != null) { 
-				   if(str.contains("name")){
+				   if(str.contains("name") || str.contains("<") ){
 					  
 				   }else{
 					   String[] tmp = str.split(",");
@@ -79,13 +79,11 @@ public class LevelHandler {
 					   }
 				   }
 				}
-				is.close(); 
-				for(int i = 0; i < levelMap.size();i++){
-					System.out.println(levelMap.get(i).getName());
-				}
+				is.close();
 			} catch (IOException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
-				JOptionPane.showConfirmDialog(null, "Unable to load the specified level");
+				JOptionPane.showConfirmDialog(null, "Unable to load level: "+levelName, "Error", JOptionPane.DEFAULT_OPTION);
 				e.printStackTrace();
+				System.exit(-1);
 			}               
 	    }       
 	}
